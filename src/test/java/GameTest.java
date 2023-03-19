@@ -1,4 +1,5 @@
 import org.example.Game;
+import org.example.NotRegisteredException;
 import org.example.Player;
 
 import org.junit.jupiter.api.Assertions;
@@ -33,7 +34,28 @@ public class GameTest {
         expected.add(error);
 
         List<Player> actual = repo.getItems();
-        
+
         Assertions.assertIterableEquals(actual, expected);
+    }
+
+    @Test
+    void fightNotRegistered() {
+        Game repo = new Game();
+
+        repo.register(linkor);
+
+        Assertions.assertThrows(NotRegisteredException.class, () -> {repo.round(linkor,error);
+        });
+
+    }
+
+    @Test
+    void fightAllRegistered() {
+        Game repo = new Game();
+
+        repo.register(linkor);
+        repo.register(error);
+
+        repo.round(linkor,error);
     }
 }

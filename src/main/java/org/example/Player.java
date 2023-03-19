@@ -1,6 +1,6 @@
 package org.example;
 
-public class Player implements Comparable<Player> {
+public class Player{
     protected int id;
     protected String name;
     protected int strength;
@@ -35,7 +35,7 @@ public class Player implements Comparable<Player> {
         this.strength = strengthOpt;
     }
 
-    @Override
+    /*@Override
     public int compareTo(Player o) {
         if (this.strength < o.strength) {
             return -1;
@@ -45,4 +45,6 @@ public class Player implements Comparable<Player> {
             return 0;
         }
     }
+
+     */
 }

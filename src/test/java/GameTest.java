@@ -37,6 +37,7 @@ public class GameTest {
             5
 
     );
+
     @Test
     void findAllSearchWithSort() {
         Game repo = new Game();
@@ -55,15 +56,39 @@ public class GameTest {
     }
 
     @Test
-    void fightNotRegistered() {
+    void fightNotRegisteredTwo() {
         Game repo = new Game();
 
         repo.register(linkor);
 
-        Assertions.assertThrows(NotRegisteredException.class, () -> {repo.round(linkor,error);
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            repo.round(linkor, error);
         });
-
     }
+    @Test
+    void fightNotRegisteredOne() {
+        Game repo = new Game();
+
+        repo.register(error);
+
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            repo.round(linkor, error);
+        });
+    }
+
+    @Test
+    void fightAllNotRegistered() {
+        Game repo = new Game();
+
+        repo.register(linkor);
+        repo.register(slot);
+
+
+        Assertions.assertThrows(NotRegisteredException.class, () -> {
+            repo.round(venom, error);
+        });
+    }
+
 
     @Test
     void fightFirstPlayerWins() {
@@ -74,7 +99,7 @@ public class GameTest {
 
         int expected = 1;
 
-        int actual = repo.round(linkor,error);
+        int actual = repo.round(linkor, error);
 
         assertEquals(expected, actual);
     }
@@ -90,10 +115,11 @@ public class GameTest {
 
         int expected = 2;
 
-        int actual = repo.round(slot,venom);
+        int actual = repo.round(slot, venom);
 
         assertEquals(expected, actual);
     }
+
     @Test
     void fightDraw() {
         Game repo = new Game();
@@ -105,7 +131,7 @@ public class GameTest {
 
         int expected = 0;
 
-        int actual = repo.round(error,venom);
+        int actual = repo.round(error, venom);
 
         assertEquals(expected, actual);
     }

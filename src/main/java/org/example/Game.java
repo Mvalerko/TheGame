@@ -24,7 +24,6 @@ public class Game {
             } else {
                 return 0;
             }
-            //System.out.println("Все хорошо");
         }
     }
 

@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class GameTest {
     Player linkor = new Player(
             1,
@@ -19,6 +21,20 @@ public class GameTest {
             2,
             "//OShiBka",
             6
+
+    );
+
+    Player venom = new Player(
+            3,
+            "ÌveNomì!",
+            6
+
+    );
+
+    Player slot = new Player(
+            3,
+            "-SLOT-",
+            5
 
     );
     @Test
@@ -50,12 +66,47 @@ public class GameTest {
     }
 
     @Test
-    void fightAllRegistered() {
+    void fightFirstPlayerWins() {
         Game repo = new Game();
 
         repo.register(linkor);
         repo.register(error);
 
-        repo.round(linkor,error);
+        int expected = 1;
+
+        int actual = repo.round(linkor,error);
+
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void fightSecondPlayerWins() {
+        Game repo = new Game();
+
+        repo.register(linkor);
+        repo.register(error);
+        repo.register(venom);
+        repo.register(slot);
+
+        int expected = 2;
+
+        int actual = repo.round(slot,venom);
+
+        assertEquals(expected, actual);
+    }
+    @Test
+    void fightDraw() {
+        Game repo = new Game();
+
+        repo.register(linkor);
+        repo.register(error);
+        repo.register(venom);
+        repo.register(slot);
+
+        int expected = 0;
+
+        int actual = repo.round(error,venom);
+
+        assertEquals(expected, actual);
     }
 }

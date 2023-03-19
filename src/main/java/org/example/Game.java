@@ -14,8 +14,8 @@ public class Game {
     public int round(Player optOne, Player optTwo) {
 
         if (findById(optOne.getId()) == null | findById(optTwo.getId()) == null) {
-            throw new NotRegisteredException("При попытке провести сражение возникла ошибка. Кто то из игроков не зарегестрирован на турнире" +
-                    " Операция не выполнена.");
+            throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
+                    "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
         } else {
             if (optOne.getStrength() < optTwo.getStrength()) {
                 return 2;

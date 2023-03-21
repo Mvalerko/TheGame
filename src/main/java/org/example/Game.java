@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    //List<Player> playersList = new ArrayList<>();
     HashMap<Integer, Player> playersList = new HashMap<>();
 
     public void register(int idOpt, Player item) {
@@ -49,7 +48,7 @@ public class Game {
         // или в одну строку:
         // return product.getName().contains(search);
     }
-    
+
     public HashMap<Integer, Player> getItems() {
         return playersList;
     }

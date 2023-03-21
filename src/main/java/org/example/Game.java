@@ -1,14 +1,15 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Game {
-    List<Player> playersList = new ArrayList<>();
+    //List<Player> playersList = new ArrayList<>();
+    HashMap<Integer, Player> playersList = new HashMap<>();
 
-    public void register(Player item) {
+    public void register(int idOpt, Player item) {
 
-        playersList.add(item);
+        playersList.put(idOpt, item);
     }
 
     public int round(Player optOne, Player optTwo) {
@@ -19,7 +20,7 @@ public class Game {
         } else {
             if (optOne.getStrength() < optTwo.getStrength()) {
                 return 2;
-            } else if ( optOne.getStrength() > optTwo.getStrength()) {
+            } else if (optOne.getStrength() > optTwo.getStrength()) {
                 return 1;
             } else {
                 return 0;
@@ -29,9 +30,11 @@ public class Game {
 
     public Player findById(int idOpt) {
 
-        for (Player product : playersList) {
-            if (matchesId(product, idOpt)) {
-                return product;
+        for (Map.Entry<Integer, Player> entry : playersList.entrySet()) {
+            Integer k = entry.getKey();
+            Player v = entry.getValue();
+            if (matchesId(v, idOpt)) {
+                return v;
             }
         }
         return null;
@@ -46,8 +49,8 @@ public class Game {
         // или в одну строку:
         // return product.getName().contains(search);
     }
-
-    public List<Player> getItems() {
+    
+    public HashMap<Integer, Player> getItems() {
         return playersList;
     }
 

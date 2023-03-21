@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -42,24 +43,25 @@ public class GameTest {
     void findAllSearchWithSort() {
         Game repo = new Game();
 
-        repo.register(linkor);
-        repo.register(error);
+        repo.register(1,linkor);
+        repo.register(2,error);
 
 
-        List<Player> expected = new ArrayList<>();
-        expected.add(linkor);
-        expected.add(error);
+        HashMap<Integer,Player> expected = repo.getItems();
+        expected.put(1, linkor);
+        expected.put(2, error);
 
-        List<Player> actual = repo.getItems();
+        HashMap<Integer,Player> actual = repo.getItems();
 
-        Assertions.assertIterableEquals(actual, expected);
+        assertEquals(expected, actual);
     }
+
 
     @Test
     void fightNotRegisteredTwo() {
         Game repo = new Game();
 
-        repo.register(linkor);
+        repo.register(1, linkor);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             repo.round(linkor, error);
@@ -69,7 +71,7 @@ public class GameTest {
     void fightNotRegisteredOne() {
         Game repo = new Game();
 
-        repo.register(error);
+        repo.register(2, error);
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
             repo.round(linkor, error);
@@ -80,8 +82,8 @@ public class GameTest {
     void fightAllNotRegistered() {
         Game repo = new Game();
 
-        repo.register(linkor);
-        repo.register(slot);
+        repo.register(1, linkor);
+        repo.register(4, slot);
 
 
         Assertions.assertThrows(NotRegisteredException.class, () -> {
@@ -94,8 +96,8 @@ public class GameTest {
     void fightFirstPlayerWins() {
         Game repo = new Game();
 
-        repo.register(linkor);
-        repo.register(error);
+        repo.register(1,linkor);
+        repo.register(2,error);
 
         int expected = 1;
 
@@ -104,14 +106,15 @@ public class GameTest {
         assertEquals(expected, actual);
     }
 
+
     @Test
     void fightSecondPlayerWins() {
         Game repo = new Game();
 
-        repo.register(linkor);
-        repo.register(error);
-        repo.register(venom);
-        repo.register(slot);
+        repo.register(1, linkor);
+        repo.register(2, error);
+        repo.register(3, venom);
+        repo.register(4, slot);
 
         int expected = 2;
 
@@ -124,10 +127,10 @@ public class GameTest {
     void fightDraw() {
         Game repo = new Game();
 
-        repo.register(linkor);
-        repo.register(error);
-        repo.register(venom);
-        repo.register(slot);
+        repo.register(1, linkor);
+        repo.register(2, error);
+        repo.register(3, venom);
+        repo.register(4, slot);
 
         int expected = 0;
 
@@ -135,4 +138,6 @@ public class GameTest {
 
         assertEquals(expected, actual);
     }
+
+
 }

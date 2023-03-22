@@ -4,53 +4,43 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
-    HashMap<Integer, Player> playersList = new HashMap<>();
+    private Player optOne;
+    private Player optTwo;
+    HashMap<String, Player> playersList = new HashMap<>();
 
-    public void register(int idOpt, Player item) {
+    public void register(String name, Player item) {
 
-        playersList.put(idOpt, item);
+        playersList.put(name, item);
     }
+    public int round(String playerName1, String playerName2) {
 
-    public int round(Player optOne, Player optTwo) {
-
-        if (findById(optOne.getId()) == null | findById(optTwo.getId()) == null) {
+        if (matchesName(playerName1) == false | matchesName(playerName2) == false) {
             throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
                     "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
         } else {
-            if (optOne.getStrength() < optTwo.getStrength()) {
-                return 2;
-            } else if (optOne.getStrength() > optTwo.getStrength()) {
-                return 1;
-            } else {
-                return 0;
-            }
+
+            this.optOne = playersList.get(playerName1);
+            this.optTwo = playersList.get(playerName2);
+
         }
+        if (optOne.getStrength() < optTwo.getStrength()) {
+            return 2;
+        } else if (optOne.getStrength() > optTwo.getStrength()) {
+            return 1;
+        } else {
+            return 0;
+        }
+
     }
 
-    public Player findById(int idOpt) {
-
-        for (Map.Entry<Integer, Player> entry : playersList.entrySet()) {
-            Integer k = entry.getKey();
-            Player v = entry.getValue();
-            if (matchesId(v, idOpt)) {
-                return v;
-            }
-        }
-        return null;
-    }
-
-    public boolean matchesId(Player product, int search) {
-        if (product.getId() == search) {
+    public boolean matchesName(String nameOpt) {
+        if (playersList.containsKey(nameOpt)) {
             return true;
         } else {
             return false;
         }
-        // или в одну строку:
-        // return product.getName().contains(search);
     }
-
-    public HashMap<Integer, Player> getItems() {
+    public HashMap<String, Player> getItems() {
         return playersList;
     }
-
 }

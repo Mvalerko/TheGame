@@ -68,6 +68,10 @@ public class GameTest {
         });
     }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e085968f11b5ce6d94c33cb27cee957d3f58ee85
     @Test
     void fightNotRegisteredOne() {
         Game repo = new Game();
@@ -91,7 +95,6 @@ public class GameTest {
             repo.round(venom.getName(), error.getName());
         });
     }
-
 
     @Test
     void fightFirstPlayerWins() {

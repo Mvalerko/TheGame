@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Game {
+
     HashMap<String, Player> playersList = new HashMap<>();
 
     public void register(String name, Player item) {
@@ -14,12 +15,19 @@ public class Game {
         Player optOne;
         Player optTwo;
 
-        if (!matchesName(playerName1)) {
+        if (findByName(playerName1) == null) {
             throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
                     "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
         } else {
 
-            optOne = playersList.get(playerName1);
+            optOne = findByName(playerName1);
+
+        }
+        if (findByName(playerName2) == null) {
+            throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
+                    "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
+        } else {
+
 
         }
         if (!matchesName(playerName2)) {

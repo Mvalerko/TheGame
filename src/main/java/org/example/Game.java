@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class Game {
-    private Player optOne;
-    private Player optTwo;
     List<Player> playersList = new ArrayList<>();
 
     public void register(Player item) {
@@ -16,13 +14,24 @@ public class Game {
 
     public int round(String playerName1, String playerName2) {
 
-        if (findByName(playerName1) == null | findByName(playerName2) == null) {
+        Player optOne;
+        Player optTwo;
+
+        if (findByName(playerName1) == null) {
             throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
                     "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
         } else {
 
-            this.optOne = findByName(playerName1);
-            this.optTwo = findByName(playerName2);
+            optOne = findByName(playerName1);
+
+        }
+        if (findByName(playerName2) == null) {
+            throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
+                    "Кто-то из игроков не зарегестрирован на турнире. Операция не выполнена.");
+        } else {
+
+            optTwo = findByName(playerName2);
+
         }
 
         if (optOne.getStrength() < optTwo.getStrength()) {

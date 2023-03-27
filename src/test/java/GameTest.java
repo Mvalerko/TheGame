@@ -43,15 +43,15 @@ public class GameTest {
     void findAllSearchWithSort() {
         Game repo = new Game();
 
-        repo.register(linkor.getName(),linkor);
-        repo.register(error.getName(),error);
+        repo.register(linkor.getName(), linkor);
+        repo.register(error.getName(), error);
 
 
-        HashMap<String,Player> expected = repo.getItems();
+        HashMap<String, Player> expected = repo.getItems();
         expected.put(linkor.getName(), linkor);
         expected.put(linkor.getName(), error);
 
-        HashMap<String,Player> actual = repo.getItems();
+        HashMap<String, Player> actual = repo.getItems();
 
         assertEquals(expected, actual);
     }
@@ -97,8 +97,8 @@ public class GameTest {
     void fightFirstPlayerWins() {
         Game repo = new Game();
 
-        repo.register(linkor.getName(),linkor);
-        repo.register(error.getName(),error);
+        repo.register(linkor.getName(), linkor);
+        repo.register(error.getName(), error);
 
         int expected = 1;
 

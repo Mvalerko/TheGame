@@ -1,6 +1,6 @@
 package org.example;
 
-public class Player{
+public class Player {
     protected int id;
     protected String name;
     protected int strength;

@@ -10,10 +10,11 @@ public class Game {
 
         playersList.put(name, item);
     }
+
     public int round(String playerName1, String playerName2) {
 
-         Player optOne;
-         Player optTwo;
+        Player optOne;
+        Player optTwo;
 
         if (!matchesName(playerName1)) {
             throw new NotRegisteredException("При попытке провести сражение возникла ошибка." +
@@ -48,6 +49,7 @@ public class Game {
             return false;
         }
     }
+
     public HashMap<String, Player> getItems() {
         return playersList;
     }
